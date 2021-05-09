@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Login & Sign-up</title>
+    <script>
+        function createpassword()
+        {
+            var pwd=document.getElementById("txtpass").value;
+            var msg=document.getElementById("msg");
+            var grade=document.getElementById("grade");
+
+            function showgrade(minc,maxc,valuec,lowc,highc)
+            {   grade.min=minc;
+                grade.max=maxc;
+                grade.value=valuec;
+                grade.low=lowc;
+                grade.high=highc;
+            }
+
+           var regExp=/(?=.*[A-Z])\w{4,5}/;    
+            
+           if (pwd.match(regExp))
+            {
+                msg.innerHTML="Strong Password";
+                showgrade(1,100,100,0,0);
+            }
+
+            else{
+              if (pwd.length<4)
+              {
+                  msg.innerHTML="Poor Password";
+                  showgrade(1,100,100,60,80);
+              }
+              else{
+                  msg.innerHTML="Weak Password"
+                  showgrade(1,100,100,40,80);
+              }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <fieldset>
+            <legend>Password</legend>
+            <input type="password" id="txtpass" onkeyup="createpassword()">
+            <meter id="grade" min="1" max="100" value="0" low="0" high="0"></meter>
+            <span id="msg"></span>
+        </fieldset>
+    </div>
+</body>
+
+</html>
